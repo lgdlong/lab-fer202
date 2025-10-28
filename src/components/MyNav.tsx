@@ -3,6 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "../hooks/useTheme";
 
@@ -16,15 +17,17 @@ function MyNav() {
       variant={isDark ? "dark" : "light"}
     >
       <Container className="d-flex justify-content-between">
-        <Navbar.Brand href="#home">Electric Bikes</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">
+          Electric Bikes
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home" className="mx-2">
+            <Nav.Link as={Link} to="/" className="mx-2">
               Home
             </Nav.Link>
-            <Nav.Link href="#bikes" className="mx-2">
-              Bikes
+            <Nav.Link as={Link} to="/contact" className="mx-2">
+              Contact
             </Nav.Link>
             <NavDropdown
               title="Categories"

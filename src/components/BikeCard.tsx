@@ -1,4 +1,5 @@
 import { Card, Badge, Button, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import {
   Battery,
   Ruler,
@@ -11,10 +12,9 @@ import type { Bike } from "../types";
 
 interface BikeCardProps {
   bike: Bike;
-  onShowDetail: (bike: Bike) => void;
 }
 
-export default function BikeCard({ bike, onShowDetail }: BikeCardProps) {
+export default function BikeCard({ bike }: BikeCardProps) {
   return (
     <Card
       className="h-100 shadow-sm border-1"
@@ -80,17 +80,11 @@ export default function BikeCard({ bike, onShowDetail }: BikeCardProps) {
         </div>
 
         <div className="mt-3">
-          <Button
-            variant="primary"
-            className="w-100"
-            size="sm"
-            onClick={() => {
-              console.log("View Details clicked for bike:", bike.name);
-              onShowDetail(bike);
-            }}
-          >
-            View Details
-          </Button>
+          <Link to={`/bikes/${bike.id}`} className="text-decoration-none">
+            <Button variant="primary" className="w-100" size="sm">
+              View Details
+            </Button>
+          </Link>
         </div>
       </Card.Body>
     </Card>
