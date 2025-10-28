@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App, { HomePage } from "../App";
 import ContactPage from "../pages/ContactPage";
 import BikeDetailPage from "../pages/BikeDetailPage";
+import CreateBikePage from "../pages/CreateBikePage";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "bikes/:id",
         element: <BikeDetailPage />,
+      },
+      {
+        path: "create-bike",
+        element: <CreateBikePage />,
       },
       // Thêm các route khác tại đây
     ],

@@ -1,7 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { Sun, Moon } from "lucide-react";
@@ -29,7 +28,10 @@ function MyNav() {
             <Nav.Link as={Link} to="/contact" className="mx-2">
               Contact
             </Nav.Link>
-            <NavDropdown
+            <Nav.Link as={Link} to="/create-bike" className="mx-2">
+              Create Bike
+            </Nav.Link>
+            {/* <NavDropdown
               title="Categories"
               id="basic-nav-dropdown"
               className="mx-2"
@@ -45,7 +47,7 @@ function MyNav() {
               <NavDropdown.Item href="#action/3.4">
                 All Categories
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
           <Nav></Nav>
         </Navbar.Collapse>
