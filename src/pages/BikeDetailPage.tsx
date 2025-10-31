@@ -1,13 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  Badge,
-  Alert,
-} from "react-bootstrap";
+import { Container, Row, Col, Button, Badge, Alert } from "react-bootstrap";
 import {
   Battery,
   Ruler,
@@ -166,22 +159,6 @@ export default function BikeDetailPage() {
                 </Row>
               </div>
             </div>
-
-            {/* Action Buttons */}
-            {/* <div className="mt-auto">
-              <Row className="g-3">
-                <Col sm={6}>
-                  <Button variant="primary" size="lg" className="w-100">
-                    Contact Seller
-                  </Button>
-                </Col>
-                <Col sm={6}>
-                  <Button variant="outline-primary" size="lg" className="w-100">
-                    Add to Wishlist
-                  </Button>
-                </Col>
-              </Row>
-            </div> */}
           </div>
         </Col>
       </Row>
