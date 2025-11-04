@@ -32,6 +32,8 @@ const schema = yup.object().shape({
     .positive("Warranty must be positive")
     .required("Warranty is required"),
   description: yup.string(),
+  color: yup.string().required("Color is required"),
+  isStock: yup.boolean(),
 });
 
 export default function CreateBikePage() {
@@ -47,6 +49,8 @@ export default function CreateBikePage() {
     weight: "",
     warranty: "",
     description: "",
+    color: "",
+    isStock: false,
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -58,9 +62,12 @@ export default function CreateBikePage() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
@@ -92,6 +99,8 @@ export default function CreateBikePage() {
         maxSpeed: Number(formData.maxSpeed),
         weight: Number(formData.weight),
         warranty: Number(formData.warranty),
+        isStock: formData.isStock,
+        color: formData.color,
       };
 
       await axios.post(`${apiUrl}/bikes`, bikeData);
@@ -285,7 +294,41 @@ export default function CreateBikePage() {
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
+          <Col md={6}>
+            <Form.Group className="mb-3">
+              <Form.Label>Color *</Form.Label>
+              <Form.Select
+                name="color"
+                value={formData.color}
+                onChange={handleChange}
+                isInvalid={!!errors.color}
+              >
+                <option value="">Select color</option>
+                <option value="Red">Red</option>
+                <option value="Blue">Blue</option>
+                <option value="Black">Black</option>
+                <option value="White">White</option>
+                <option value="Silver">Silver</option>
+                <option value="Green">Green</option>
+                <option value="Yellow">Yellow</option>
+                <option value="Orange">Orange</option>
+              </Form.Select>
+              <Form.Control.Feedback type="invalid">
+                {errors.color}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
         </Row>
+
+        <Form.Group className="mb-3">
+          <Form.Check
+            type="checkbox"
+            name="isStock"
+            label="In Stock"
+            checked={formData.isStock}
+            onChange={handleChange}
+          />
+        </Form.Group>
 
         <Form.Group className="mb-4">
           <Form.Label>Description</Form.Label>

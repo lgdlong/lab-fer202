@@ -71,11 +71,7 @@ export default function BikeDetailPage() {
               className="img-fluid rounded shadow"
               style={{ width: "100%", height: "400px", objectFit: "cover" }}
             />
-            <Badge
-              bg="success"
-              className="position-absolute top-0 end-0 m-3"
-              style={{ fontSize: "1rem" }}
-            >
+            <Badge bg="success" className="position-absolute top-0 end-0 m-3">
               <MapPin size={16} className="me-1" />
               {bike.origin}
             </Badge>
@@ -106,7 +102,7 @@ export default function BikeDetailPage() {
                 <Row className="g-3">
                   <Col sm={6}>
                     <div className="d-flex align-items-center p-3 border rounded">
-                      <Battery size={24} className="me-3 text-primary" />
+                      <Battery size={24} className="me-3" />
                       <div>
                         <strong>Battery</strong>
                         <br />
@@ -116,7 +112,7 @@ export default function BikeDetailPage() {
                   </Col>
                   <Col sm={6}>
                     <div className="d-flex align-items-center p-3 border rounded">
-                      <Ruler size={24} className="me-3 text-info" />
+                      <Ruler size={24} className="me-3" />
                       <div>
                         <strong>Range</strong>
                         <br />
@@ -126,7 +122,7 @@ export default function BikeDetailPage() {
                   </Col>
                   <Col sm={6}>
                     <div className="d-flex align-items-center p-3 border rounded">
-                      <Gauge size={24} className="me-3 text-warning" />
+                      <Gauge size={24} className="me-3" />
                       <div>
                         <strong>Max Speed</strong>
                         <br />
@@ -136,7 +132,7 @@ export default function BikeDetailPage() {
                   </Col>
                   <Col sm={6}>
                     <div className="d-flex align-items-center p-3 border rounded">
-                      <Weight size={24} className="me-3 text-secondary" />
+                      <Weight size={24} className="me-3" />
                       <div>
                         <strong>Weight</strong>
                         <br />
@@ -146,7 +142,7 @@ export default function BikeDetailPage() {
                   </Col>
                   <Col sm={12}>
                     <div className="d-flex align-items-center p-3 border rounded">
-                      <Shield size={24} className="me-3 text-success" />
+                      <Shield size={24} className="me-3" />
                       <div>
                         <strong>Warranty</strong>
                         <br />

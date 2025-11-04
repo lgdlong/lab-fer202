@@ -15,6 +15,12 @@ interface BikeCardProps {
 }
 
 export default function BikeCard({ bike }: BikeCardProps) {
+  // Function to get appropriate text color based on background
+  const getTextColor = (color: string) => {
+    const darkColors = ["Black", "Blue", "Red", "Green"];
+    return darkColors.includes(color) ? "white" : "black";
+  };
+
   return (
     <Card
       className="h-100 shadow-sm border-1"
@@ -37,6 +43,12 @@ export default function BikeCard({ bike }: BikeCardProps) {
       </div>
       <Card.Body className="d-flex flex-column">
         <Card.Title className="mb-3 text-primary">{bike.name}</Card.Title>
+        <div className="mb-2">
+          <Badge className="me-2">{bike.color}</Badge>
+          <Badge bg={bike.isStock ? "success" : "danger"}>
+            {bike.isStock ? "In Stock" : "Out of Stock"}
+          </Badge>
+        </div>
         <div className="mb-3">
           <div className="h5 text-success mb-2 d-flex align-items-center">
             <DollarSign size={18} className="me-2" />

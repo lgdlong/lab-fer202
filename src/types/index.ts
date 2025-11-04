@@ -12,6 +12,8 @@ export interface Bike {
   weight: number;
   warranty: number;
   description?: string;
+  color: string;
+  isStock: boolean;
 }
 
 export interface ThemeContextType {

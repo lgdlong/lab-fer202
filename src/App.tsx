@@ -15,7 +15,7 @@ export function HomePage() {
 
   useEffect(() => {
     axios
-      .get<Bike[]>(`${apiUrl}/bikes`)
+      .get<Bike[]>(`${apiUrl}`)
       .then((response) => {
         const bikes = Array.isArray(response.data) ? response.data : [];
         setBikes(bikes);
