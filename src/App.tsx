@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import MyNav from "./components/MyNav";
 import Header from "./components/Header";
 import BikeGrid from "./components/BikeGrid";
+import BikeDetailModal from "./components/BikeDetailModal";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import axios from "axios";
 import type { Bike } from "./types";
@@ -11,6 +12,8 @@ import { Outlet } from "react-router-dom";
 
 export function HomePage() {
   const [bikes, setBikes] = useState<Bike[]>([]);
+  const [selectedBike, setSelectedBike] = useState<Bike | null>(null);
+  const [showModal, setShowModal] = useState(false);
   const apiUrl = import.meta.env.VITE_MOCKAPI;
 
   useEffect(() => {
@@ -25,15 +28,31 @@ export function HomePage() {
       });
   }, [apiUrl]);
 
+  const handleImageClick = (bike: Bike) => {
+    setSelectedBike(bike);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedBike(null);
+  };
+
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header />
 
       <main className="flex-grow-1">
         <Container className="mb-5">
-          <BikeGrid bikes={bikes} />
+          <BikeGrid bikes={bikes} onImageClick={handleImageClick} />
         </Container>
       </main>
+
+      <BikeDetailModal
+        show={showModal}
+        onHide={handleCloseModal}
+        bike={selectedBike}
+      />
     </div>
   );
 }

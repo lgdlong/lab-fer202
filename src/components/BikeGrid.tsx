@@ -6,9 +6,15 @@ interface BikeGridProps {
   bikes: Bike[];
   isLoading?: boolean;
   error?: Error | null;
+  onImageClick?: (bike: Bike) => void;
 }
 
-function BikeGrid({ bikes, isLoading = false, error = null }: BikeGridProps) {
+function BikeGrid({
+  bikes,
+  isLoading = false,
+  error = null,
+  onImageClick,
+}: BikeGridProps) {
   if (isLoading) {
     return (
       <div className="text-center py-5">
@@ -44,7 +50,10 @@ function BikeGrid({ bikes, isLoading = false, error = null }: BikeGridProps) {
     <Row className="g-4">
       {bikes.map((bike) => (
         <Col key={bike.id} xs={12} sm={6} lg={4} xl={3}>
-          <BikeCard bike={bike} />
+          <BikeCard
+            bike={bike}
+            onImageClick={onImageClick ? () => onImageClick(bike) : undefined}
+          />
         </Col>
       ))}
     </Row>

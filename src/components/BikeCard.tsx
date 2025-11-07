@@ -12,15 +12,10 @@ import type { Bike } from "../types";
 
 interface BikeCardProps {
   bike: Bike;
+  onImageClick?: () => void;
 }
 
-export default function BikeCard({ bike }: BikeCardProps) {
-  // Function to get appropriate text color based on background
-  const getTextColor = (color: string) => {
-    const darkColors = ["Black", "Blue", "Red", "Green"];
-    return darkColors.includes(color) ? "white" : "black";
-  };
-
+export default function BikeCard({ bike, onImageClick }: BikeCardProps) {
   return (
     <Card
       className="h-100 shadow-sm border-1"
@@ -31,7 +26,12 @@ export default function BikeCard({ bike }: BikeCardProps) {
           variant="top"
           src={bike.image}
           alt={bike.name}
-          style={{ height: "200px", objectFit: "cover" }}
+          style={{
+            height: "200px",
+            objectFit: "cover",
+            cursor: onImageClick ? "pointer" : "default",
+          }}
+          onClick={onImageClick}
         />
         <Badge
           bg="success"

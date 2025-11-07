@@ -20,9 +20,15 @@ export default function BikeDetailPage() {
   const [bike, setBike] = useState<Bike | null>(null);
   const apiUrl = import.meta.env.VITE_MOCKAPI;
 
+  // Function to get appropriate text color based on background
+  const getTextColor = (color: string) => {
+    const darkColors = ["Black", "Blue", "Red", "Green"];
+    return darkColors.includes(color) ? "white" : "black";
+  };
+
   useEffect(() => {
     axios
-      .get<Bike>(`${apiUrl}/bikes/${id}`)
+      .get<Bike>(`${apiUrl}/${id}`)
       .then((response) => {
         setBike(response.data);
       })
@@ -84,6 +90,21 @@ export default function BikeDetailPage() {
               <h1 className="display-5 fw-bold mb-3">{bike.name}</h1>
 
               <div className="mb-4">
+                <Badge
+                  className="me-2 mb-2"
+                  style={{
+                    backgroundColor: bike.color.toLowerCase(),
+                    color: getTextColor(bike.color),
+                  }}
+                >
+                  {bike.color}
+                </Badge>
+                <Badge
+                  bg={bike.isStock ? "success" : "danger"}
+                  className="mb-2"
+                >
+                  {bike.isStock ? "In Stock" : "Out of Stock"}
+                </Badge>
                 <h2 className="h3 text-success d-flex align-items-center">
                   <DollarSign size={24} className="me-2" />
                   {bike.price.toLocaleString()} VND

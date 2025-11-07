@@ -17,10 +17,16 @@ interface BikeDetailModalProps {
 }
 
 function BikeDetailModal({ show, onHide, bike }: BikeDetailModalProps) {
+  // Function to get appropriate text color based on background
+  const getTextColor = (color: string) => {
+    const darkColors = ["Black", "Blue", "Red", "Green"];
+    return darkColors.includes(color) ? "white" : "black";
+  };
+
   if (!bike)
     return (
       <>
-        <h1>Hello</h1>
+        <h1>No bikes</h1>
       </>
     );
 
@@ -41,9 +47,21 @@ function BikeDetailModal({ show, onHide, bike }: BikeDetailModalProps) {
           </Col>
           <Col md={6}>
             <div className="mb-3">
-              <Badge bg="success" className="mb-2">
+              <Badge bg="success" className="mb-2 me-2">
                 <MapPin size={14} className="me-1" />
                 {bike.origin}
+              </Badge>
+              <Badge
+                className="mb-2 me-2"
+                style={{
+                  backgroundColor: bike.color.toLowerCase(),
+                  color: getTextColor(bike.color),
+                }}
+              >
+                {bike.color}
+              </Badge>
+              <Badge bg={bike.isStock ? "success" : "danger"} className="mb-2">
+                {bike.isStock ? "In Stock" : "Out of Stock"}
               </Badge>
               <h4 className="text-success d-flex align-items-center">
                 <DollarSign size={20} className="me-2" />
